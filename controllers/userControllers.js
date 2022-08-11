@@ -1,5 +1,5 @@
 var bcrypt = require('bcryptjs');
-const {formValidation} = require("../validation/formValidation")
+const User = require("../models/User");
 module.exports.getUserLogin =  (req, res) => {
     res.render("pages/login")
 }
@@ -27,12 +27,41 @@ module.exports.postUserRegister = (req, res) => {
     }
   
     if (errors.length > 0) {
-      res.render('pages/register', {
+      return res.render('pages/register', {
         errors,
         username,
         password
         
       });
     }
+    User.findOne({username}).then(user => {
+        if(user){
+            errors.push({message:"Username Already In Use."});
+            return res.render('pages/register', {
+                errors,
+                username,
+                password
+                
+              })
+        } else {
+            bcrypt.genSalt(10, function(err, salt) {
+                bcrypt.hash(password, salt, function(err, hash) {
+                    // Store hash in your password DB.
+                    if(err) throw err;
+                    const newUser = new User({
+                        username:username,
+                        password: hash
+                    });
+                    newUser.save();
+                });
+            });
 
+            return res.render("pages/register",{
+                errors,
+                username,
+                password
+            })   
+        }
+    }).catch(err => console.log(err))
+    /**/
     }
