@@ -1,25 +1,24 @@
 <%- include("../layouts/head") %>
 <h1>index page</h1>
 
+<%- include("../partials/flash") %>
+
+
+
 <div id="card">
 
     <ul id="list-group">
 
 <% users.forEach(function(user) { %>
-    <% if(user.lenght == undefined){ %>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Hiç Bir Kullanıcı Bulunamadı</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-    
-        </div>
-            <%} %>
     <li id="list-group-item">
         <%= user.username %></p>
     </li> 
 
-    <% console.log(user.lenght) %>
     <% }) %> 
 </ul>
+
 </div>
 
+<% if(user){ %>
+    <h4 class="m-2">Aktif Kullanıcı <%- user.username %></h4>
+    <% } %>
