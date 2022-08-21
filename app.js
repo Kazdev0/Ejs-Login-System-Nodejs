@@ -5,7 +5,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
-
+require("dotenv").config();
 const app = express();
 const port = 5000;
 

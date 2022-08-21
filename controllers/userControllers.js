@@ -11,8 +11,10 @@ module.exports.getUserLogin =  (req, res) => {
 }
 module.exports.getUserLogout = (req, res) => {
     // Clear Cookies
-    res.clearCookie("connection.sid");
-    res.redirect("/login")
+    req.logout(function(err){
+        if(err) throw err;
+        res.redirect("/login")
+    });
 }
 module.exports.getUserRegister =  (req, res) => {
     // Register Page

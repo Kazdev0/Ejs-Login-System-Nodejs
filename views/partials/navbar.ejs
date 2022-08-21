@@ -11,14 +11,22 @@
               <a href="/logout" class="nav-link active">Logout</a>
             </li>
             <% } else { %>
+              <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Login
+                </a>
+                <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/login">Login</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/discord/login">Discord Login</a>
+                </div>
+              </li>
             <li class="nav-item">
-            <a class="nav-link active" href="/login">Login</a>
+              <a class="nav-link active" href="/register">Register</a>
             </li>
               <% } %>
 
-        <li class="nav-item">
-          <a class="nav-link active" href="/register">Register</a>
-        </li>
+
       </ul>
     </div>
   </nav>
